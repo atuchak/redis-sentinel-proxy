@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  redis-sentinel:
+    image: docker.io/bitnami/redis-sentinel:7.0
+    ports:
+      - 26379:26379
+    volumes:
+      - redis-sentinel_data:/bitnami
+  redis:
+    image: docker.io/bitnami/redis:7.0
+    ports:
+      - 6379:6379
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    volumes:
+      - redis_data:/bitnami
+volumes:
+  redis-sentinel_data:
+    driver: local
+  redis_data:
+    driver: local
